@@ -1,6 +1,6 @@
 ﻿/* Name: Liam McDougall, 000878229
  * Date: 2025/09/16
- * Purpose: A text based adventure game
+ * Purpose: A text based adventure game, where the player will determine the most expensive item to sell
  *
  */
 using System.Security.Cryptography.X509Certificates;
@@ -37,7 +37,7 @@ namespace mcdougall_liam_a1_tba
             Console.WriteLine("");
             do
             {
-                Console.WriteLine("What do you want to do? Type 'sell' when you have made your decision.");
+                Console.WriteLine("What do you want to do? Type 'sell' when you have made your decision. Type 'help' for a guide.");
                 Console.WriteLine("Choices:  Condition, Demand, Rarity");
                 Console.WriteLine("Items:  Pocket Watch, Snow Globe, Toy Car");
                 //The player will make a choice for what they want to learn, and type an item in the same line: ie, "Demand Toy Car"
@@ -47,7 +47,7 @@ namespace mcdougall_liam_a1_tba
                 choice = choice.ToLower();
 
                 //Item 1 choices
-                if ((choice == "condition pocket watch")||(choice == "condition item 1")){Console.WriteLine(condition1);}
+                if ((choice == "condition pocket watch") || (choice == "condition item 1")) { Console.WriteLine(condition1); }
                 else if ((choice == "demand pocket watch") || (choice == "demand item 1")) { Console.WriteLine(demand1); }
                 else if ((choice == "rarity pocket watch") || (choice == "rarity item 1")) { Console.WriteLine(rarity1); }
 
@@ -61,20 +61,34 @@ namespace mcdougall_liam_a1_tba
                 else if ((choice == "demand toy car") || (choice == "demand item 3")) { Console.WriteLine(demand3); }
                 else if ((choice == "rarity toy car") || (choice == "rarity item 3")) { Console.WriteLine(rarity3); }
 
+                //Help guide
+                else if (choice == "help") {
+                    Console.WriteLine("Your objective is to find the item with the best value. The value is determind by the highest average of" +
+                        "condition, demand, and rarity. There are 3 choices for items: pocket watch, snow globe, and toy car" +
+                        "To find out the various attributes, type a choice and item. For example, to find the condition of the " +
+                        "snow globe, type 'condition snow globe'. When you have done enough research, type 'sell'. You will then " +
+                        "be prompted to type an item to sell. You will then find out the value of the items to see if you made the best" +
+                        "decision");
+                }
+
                 Console.WriteLine("\n");
             } while ((choice != "sell"));
 
-            //Now that the user has made a d
-            Console.WriteLine("What item do you want to sell? Pocket Watch, Snow Globe, or Toy Car?");
-            choice = choice.ToLower();
+            //Now that the user has made a decision, they will type their choice.
+            Console.WriteLine("So what item do you want to sell? Pocket Watch, Snow Globe, or Toy Car?");
+
+            //Will only exit the loop if the user has correctly typed an option
             Boolean quit = false;
             do
             {
                 choice = Console.ReadLine();
+                //Makes the user unable to make an error by including different capitalizations
                 choice = choice.ToLower();
+
                 if (choice == "pocket watch") { quit = true; }
                 else if (choice == "snow globe") { quit = true; }
                 else if (choice == "toy car") { quit = true; }
+                else { Console.WriteLine("What was that? I didn't quite catch that."); }
             } while (quit != true);
 
         }
