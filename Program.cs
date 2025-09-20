@@ -9,10 +9,9 @@ namespace mcdougall_liam_a1_tba
 {
     internal class Program
     {
-
-
         static void Main(string[] args)
         {
+            string result = "";
             //Variables for item 1, pocket watch
             string condition1 = "acceptable", demand1 = "low, not many have sold", rarity1 = "One of a kind";
             int value1 = 5000;
@@ -30,9 +29,9 @@ namespace mcdougall_liam_a1_tba
             string choice = Console.ReadLine();
 
             //Intro to the game and plot
-            Console.WriteLine("Your father is moving houses, and needs to get rid of stuff. He places 3 item on the desk. 'I need  you to " +
-                 "choose between my items here, pick what you believe the most expensive one and sell it! I consider them each equally " +
-                 "sentimental. I just want the most amount of money from these old wedding gifts.'");
+            Console.WriteLine("Your father is moving houses, and needs to get rid of stuff. He places 3 items on the desk. 'I need  you to " +
+                 "choose between my items here, pick what you believe the most expensive one is and sell it! I consider them each equally " +
+                 "sentimental. All I want is the most amount of money from these old wedding gifts.'");
 
             Console.WriteLine("");
             do
@@ -41,11 +40,10 @@ namespace mcdougall_liam_a1_tba
                 Console.WriteLine("Choices:  Condition, Demand, Rarity");
                 Console.WriteLine("Items:  Pocket Watch, Snow Globe, Toy Car");
                 //The player will make a choice for what they want to learn, and type an item in the same line: ie, "Demand Toy Car"
-                choice = Console.ReadLine();
+                choice = Console.ReadLine().ToLower();
 
                 //Makes the user less likely to make an error by including different capitalizations
-                choice = choice.ToLower();
-
+                Console.WriteLine("\n");
                 //Item 1 choices
                 if ((choice == "condition pocket watch") || (choice == "condition item 1")) { Console.WriteLine(condition1); }
                 else if ((choice == "demand pocket watch") || (choice == "demand item 1")) { Console.WriteLine(demand1); }
@@ -71,7 +69,7 @@ namespace mcdougall_liam_a1_tba
                         "'condition snow globe'. When you have done enough research, type 'sell'. You will then be prompted to type " +
                         "an item to sell. You will then find out the value of the item and see if you made a good decision.");
                 }
-                else {
+                else if (choice != "sell"){
                     Console.WriteLine("Remember to type a choice + item, for example: 'Demand Toy Car' to get the buyer demand for the toy car");
                 }
                 Console.WriteLine("Press 'enter' to continue\n");
@@ -88,25 +86,22 @@ namespace mcdougall_liam_a1_tba
                 choice = Console.ReadLine();
                 //Makes the user less likely to make an error by including different capitalizations
                 choice = choice.ToLower();
-
+               
                 if (choice == "pocket watch") {
-                    Console.WriteLine("The value of the item is: $5,000");
-                    Console.WriteLine("Your father is pleased. That's a good amount.");
+                    result = $"The value of {choice} is: ${value1}. Your father is pleased. That's a good amount.";
                     quit = true; 
                 }
                 else if (choice == "snow globe") {
-                    Console.WriteLine("The value of the item is: $1,000");
-                    Console.WriteLine("Your father seems dissapointed. It could have been more");
+                    result = $"The value of {choice} is: ${value2}. Your father seems dissapointed. It could have been more";
                     quit = true; 
                 }
                 else if (choice == "toy car") {
-                    Console.WriteLine("The value of the item is: $100,000");
-                    Console.WriteLine("Excellent! You've made your father a lot of money! He's overjoyed!");
+                    result = $"The value of {choice} is: ${value3}. Excellent! You've made your father a lot of money! He's overjoyed";
                     quit = true; 
                 }
                 else { Console.WriteLine("What was that? I didn't quite catch that."); }
             } while (quit != true);
-
+            Console.WriteLine(result);
         }
     }
 }
