@@ -1,6 +1,6 @@
 ﻿/* Name: Liam McDougall, 000878229
  * Date: 2025/09/16
- * Purpose: A text based adventure game, where the player will determine the most expensive item to sell
+ * Purpose: A text based adventure game, where the player will determine the most expensive item to sell for their father.
  *
  */
 using System.Security.Cryptography.X509Certificates;
@@ -13,16 +13,16 @@ namespace mcdougall_liam_a1_tba
 
         static void Main(string[] args)
         {
-            //Variables for item 1
-            string name1 = "Pocket watch", condition1 = "acceptable", demand1 = "low, not many have sold", rarity1 = "One of a kind";
+            //Variables for item 1, pocket watch
+            string condition1 = "acceptable", demand1 = "low, not many have sold", rarity1 = "One of a kind";
             int value1 = 5000;
 
-            //Variables for item
-            string name2 = "Snow globe", condition2 = "excellent", demand2 = "medium", rarity2 = "Over 100,000";
+            //Variables for item 2, snow globe
+            string condition2 = "excellent", demand2 = "medium", rarity2 = "Over 100,000";
             int value2 = 1000;
 
-            //Variables for item 3
-            string name3 = "Toy car", condition3 = "poor, very scratched", demand3 = "high", rarity3 = "Around 5000 are left";
+            //Variables for item 3, toy car
+            string condition3 = "poor, very scratched", demand3 = "high", rarity3 = "Around 5000 are left";
             int value3 = 10000;
 
             //Title screen
@@ -43,7 +43,7 @@ namespace mcdougall_liam_a1_tba
                 //The player will make a choice for what they want to learn, and type an item in the same line: ie, "Demand Toy Car"
                 choice = Console.ReadLine();
 
-                //ToLower makes it so the users input will have a better chance of equalling what was typed
+                //Makes the user less likely to make an error by including different capitalizations
                 choice = choice.ToLower();
 
                 //Item 1 choices
@@ -62,16 +62,20 @@ namespace mcdougall_liam_a1_tba
                 else if ((choice == "rarity toy car") || (choice == "rarity item 3")) { Console.WriteLine(rarity3); }
 
                 //Help guide
-                else if (choice == "help") {
-                    Console.WriteLine("Your objective is to find the item with the best value. The value is determind by the highest average of" +
-                        "condition, demand, and rarity. There are 3 choices for items: pocket watch, snow globe, and toy car" +
-                        "To find out the various attributes, type a choice and item. For example, to find the condition of the " +
-                        "snow globe, type 'condition snow globe'. When you have done enough research, type 'sell'. You will then " +
-                        "be prompted to type an item to sell. You will then find out the value of the items to see if you made the best" +
-                        "decision");
+                else if (choice == "help")
+                {
+                    Console.WriteLine("Your objective is to find the item with the best value. The value is determind by the highest " +
+                        "average of condition, demand, and rarity. There are 3 choices for items: pocket watch, snow globe, and " +
+                        "toy car. You can also type 'item ' and a number to find an item (example, item 3 is toy car). To find out " +
+                        "the various attributes, type a choice and item. For example, to find the condition of the snow globe, type " +
+                        "'condition snow globe'. When you have done enough research, type 'sell'. You will then be prompted to type " +
+                        "an item to sell. You will then find out the value of the item and see if you made a good decision.");
                 }
-
-                Console.WriteLine("\n");
+                else {
+                    Console.WriteLine("Remember to type a choice + item, for example: 'Demand Toy Car' to get the buyer demand for the toy car");
+                }
+                Console.WriteLine("Press 'enter' to continue\n");
+                string Pause = Console.ReadLine();
             } while ((choice != "sell"));
 
             //Now that the user has made a decision, they will type their choice.
@@ -82,12 +86,24 @@ namespace mcdougall_liam_a1_tba
             do
             {
                 choice = Console.ReadLine();
-                //Makes the user unable to make an error by including different capitalizations
+                //Makes the user less likely to make an error by including different capitalizations
                 choice = choice.ToLower();
 
-                if (choice == "pocket watch") { quit = true; }
-                else if (choice == "snow globe") { quit = true; }
-                else if (choice == "toy car") { quit = true; }
+                if (choice == "pocket watch") {
+                    Console.WriteLine("The value of the item is: $5,000");
+                    Console.WriteLine("Your father is pleased. That's a good amount.");
+                    quit = true; 
+                }
+                else if (choice == "snow globe") {
+                    Console.WriteLine("The value of the item is: $1,000");
+                    Console.WriteLine("Your father seems dissapointed. It could have been more");
+                    quit = true; 
+                }
+                else if (choice == "toy car") {
+                    Console.WriteLine("The value of the item is: $100,000");
+                    Console.WriteLine("Excellent! You've made your father a lot of money! He's overjoyed!");
+                    quit = true; 
+                }
                 else { Console.WriteLine("What was that? I didn't quite catch that."); }
             } while (quit != true);
 
